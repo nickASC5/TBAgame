@@ -1,0 +1,65 @@
+/* Color Scheme
+e
+#331111 dark purple red
+#c60094 medium red
+#f2b9d6 pale red
+#a40353 darkish red
+#aa006d darkishish red */
+
+body{
+    background-color: #441111;
+}
+
+h1{
+	color: white;
+	font-family: 'Lobster', cursive;
+}
+
+#navbar {
+	display: flex;
+	width:100%;
+
+	background-color:#a40353;
+	color:#b9d6f2;
+	align-content:center;
+	justify-content:center;
+
+	left:0px;
+	top: 0px;
+	font-family: 'Montserrat';
+	margin-bottom: 1em;
+}
+
+#navbar a {
+	padding:1em;
+	text-decoration: none;
+	color: #f2b9d6;
+}
+
+#navbar a:hover {
+	background-color:#ca208d;
+}
+
+#navbar a:active {
+	background-color: #f2b9d6;
+	color: #aa006d;
+}
+
+.a1{
+    padding-left: 150px;
+}
+.a2{
+padding-left: 150px;
+}
+p{
+	color: white;
+	font-family: 'Muli', sans-serif;
+}
+.img2{
+	width: 350px;
+
+}
+h2{
+	color: white;
+	font-family: 'Lobster', cursive;
+}
