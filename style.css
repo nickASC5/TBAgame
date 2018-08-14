@@ -12,7 +12,8 @@ body{
 
 h1{
 	color: white;
-	font-family: 'Lobster', cursive;
+	font-family: 'Montserrat';
+	text-align: center;
 }
 
 #navbar {
@@ -33,7 +34,8 @@ h1{
 #navbar a {
 	padding:1em;
 	text-decoration: none;
-	color: #f2b9d6;
+	color: #ffffff;
+	font-size: 25px;
 }
 
 #navbar a:hover {
@@ -62,4 +64,19 @@ p{
 h2{
 	color: white;
 	font-family: 'Lobster', cursive;
+}
+li{
+	color: white;
+}
+#img6{
+	margin: auto;
+	align-content: center;
+}
+
+#logo {
+	margin-left: auto;
+	margin-right: auto;
+}
+button{
+	width: 50px;
 }
