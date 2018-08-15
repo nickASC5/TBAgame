@@ -33,6 +33,11 @@ function SQ(configStr) { // returns a gridSquare with specified walls
     this.bonus = isBonus
     this.goal = isGoal
     this.walls = [nWall,eWall,sWall,wWall]
+    this.wasBonus = false;
+    if(this.bonus) {
+        this.wasBonus = true;
+    }
+
 
 
 }
@@ -202,12 +207,17 @@ function moveCharacter(pos1,pos2,frames,height,width) {
 }
 
 function keyPressed() {
+
+    if(keyCode == 82) { // r key, reset game
+        resetGame()
+        return 0;
+    }
+
     var cellHeight = Math.floor((canvasHeight) / levels[character.stage].grid.length)
     var cellWidth = Math.floor((canvasWidth)/ levels[character.stage].grid[0].length)
     var firstPos = character.pos()
     console.log("WE GOT A KEYPRESS")
     
-   
     if (keyCode === UP_ARROW) {
         if (!character.pos().walls[0]) {
             character.yx = [character.yx[0]-1,character.yx[1]];
@@ -337,8 +347,12 @@ function resetGame() {
     character.score = 15;
     character.moves = 0;
     character.stage = 0;
-    for(var level in levels) {
-        level.grid = level.orig.slice()        
+    for(var i = 0; i < levels.length; i++) {
+        var level = levels[i]
+        for(var y = 0; y < level.grid.length; y++)
+            for(var x = 0; x < level.grid[y].length; x++) {
+                level.grid[y][x].bonus = level.grid[y][x].wasBonus
+            }       
     }
     gameOver = false;        
 }
