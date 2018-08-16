@@ -10,6 +10,11 @@ body{
     background-color: #441111;
 }
 
+.rotate {
+  transform: rotate(45deg); /* Equal to rotateZ(45deg) */
+  
+}
+
 h1{
 	color: white;
 	font-family: 'Montserrat';

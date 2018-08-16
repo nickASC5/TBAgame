@@ -1,6 +1,7 @@
 const canvasWidth = 800;
 const canvasHeight = 800;
 var gameOver = false;
+var coffee;
 
 function moveBetween(pos1,pos2,frames) {
     var yDiff = Math.floor((pos1[1] - pos2[1]) / frames)
@@ -143,7 +144,16 @@ levelThree.grid = [
     [   new SQ("wnsb"),  new SQ("s"),    new SQ("s"),   new SQ("sebn")],
     ]
 
-const levels = [levelOne,levelTwo,levelThree]
+var levelFour = new level();
+
+levelFour.grid = [
+[ new SQ("new"), new SQ("news"), new SQ("newb") ],
+[ new SQ("wb"),  new SQ("sn"), new SQ("se")],
+[ new SQ("w"),  new SQ("ns"), new SQ("ebn")],
+[ new SQ("sewb"), new SQ("wnsg"), new SQ("es")],
+]
+
+const levels = [levelOne,levelTwo,levelThree,levelFour]
 
 var character = {
     stage : 0,
@@ -154,26 +164,25 @@ var character = {
 
         return levels[this.stage].sq(this.yx)
     },
-    score : 15
+    score : 20
 
 
 
 }
 var coffee;
-function preLoad() {
-    coffee = loadImage('http://www.pngmart.com/files/4/Coffee-Cup-PNG-Pic.png')
-}
+
 
 
 function setup() {
-
-    createCanvas(canvasWidth+1,canvasHeight+1);
+    coffee = loadImage("assets/coffee.png"); 
+    var cnv = createCanvas(canvasWidth+1,canvasHeight+1);
     background(100,10,100);
+
    
 }
 
 function draw() {
-    background(255)
+    background(68,17,17)
     if(character.stage < levels.length) {
         drawLevel(levels[character.stage],true)
         fill(255)
@@ -197,14 +206,7 @@ function draw() {
 }
 
 
-function moveCharacter(pos1,pos2,frames,height,width) {
-    var posArray = moveBetween(pos1,pos2,frames)
-    fill(0)
-    for(var frame = 0; frame < frames.length; frame++) {
-        ellipse(...posArray[frame],height,width)
-    }
 
-}
 
 function keyPressed() {
 
@@ -268,10 +270,10 @@ function keyPressed() {
         character.yx = [0,0]
         character.stage += 1
         character.moves = 0;
-        character.score = 15;
+        character.score = 20;
     }
     
-    if(character.score < 0) {
+    if(character.score <= 0) {
         gameOver = true;
     }    
 
@@ -287,6 +289,7 @@ function floor(number) {
 function drawLevel(curLevel,drawChar) {
     var cellHeight = Math.floor((canvasHeight) / curLevel.grid.length)
     var cellWidth = Math.floor((canvasWidth)/curLevel.grid[0].length)
+    if(cellHeight > cellWidth) {cellHeight = cellWidth} else {cellWidth = cellHeight}
 
     for(let y = 0; y < curLevel.grid.length; y++){
         for(let x = 0; x < curLevel.grid[y].length; x++) {
@@ -320,7 +323,7 @@ function drawLevel(curLevel,drawChar) {
             noStroke()
             if(curLevel.grid[y][x].bonus){
                 fill(120,62,62)
-                ellipse(...center,cellWidth/5,cellHeight/5)
+                image(coffee,tl[0]+cellWidth/4,tl[1]+cellWidth/4,cellWidth/2,cellHeight/2)
                 
             }
             if(character.pos() == curLevel.grid[y][x] && drawChar) {
@@ -344,7 +347,7 @@ console.log(character.pos())
 
 function resetGame() {
     character.yx = [0,0]
-    character.score = 15;
+    character.score = 20;
     character.moves = 0;
     character.stage = 0;
     for(var i = 0; i < levels.length; i++) {
@@ -357,9 +360,6 @@ function resetGame() {
     gameOver = false;        
 }
 
-var resetButton = document.getElementById('reset')
-
-resetButton.addEventListener('click',resetGame)
 
 
   
